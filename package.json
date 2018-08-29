@@ -1,0 +1,29 @@
+{
+  "name": "bedelli_haskellik",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cats.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gungorkocak/bedelli_haskellik.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gungorkocak/bedelli_haskellik/issues"
+  },
+  "homepage": "https://github.com/gungorkocak/bedelli_haskellik#readme",
+  "dependencies": {
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "hyperapp": "^1.2.8",
+    "jsx-transform": "^2.4.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3"
+  }
+}
