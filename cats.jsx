@@ -1,4 +1,7 @@
-import { h, app } from "hyperapp";
+import { h, app } from "hyperapp"
+import picostyle from "picostyle"
+
+const styled = picostyle(h)
 
 const PERSONAS = {
   "standart": "චᆽච",
@@ -58,15 +61,30 @@ const actions = {
   })
 }
 
+const Box = styled("div")(({left, top}) => ({
+  position: "absolute",
+  top: top + "px",
+  left: left + "px",
+  width: 250 + "px",
+  height: 100 + "px",
+  backgroundColor: "#fdfdfd",
+  cursor: "move",
+  fontSize: 48 + "px",
+  lineHeight: 60 + "px",
+  padding: 20 + "px",
+  boxSizing: "border-box",
+  textAlign: "center"
+}))
+
 const Cat = ({id, persona, position} = cat) => (state, actions) => {
   const [x, y] = position
   const [cursorX, cursorY] = state.cursor
 
   return (
-    <div
+    <Box
       id={id}
-      class="cat"
-      style={{left: x - cursorX + 'px', top: y - cursorY + 'px'}}
+      top={y - cursorY}
+      left={x - cursorX}
       onmousedown={e => {
         actions.drag({
           id,
@@ -77,7 +95,7 @@ const Cat = ({id, persona, position} = cat) => (state, actions) => {
       }}
     >
       {PERSONAS[persona]}
-    </div>
+    </Box>
   )
 }
 
