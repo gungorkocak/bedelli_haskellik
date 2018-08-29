@@ -38,32 +38,27 @@ const state = {
   isDragging: false
 }
 
+const updateCatById = (id, cat, position) => (
+  cat && cat.id == parseInt(id)
+  ? Object.assign({},cat, {position})
+  : cat
+)
+
 const actions = {
   drop: () => ({isDragging: false}),
-  move: ({id, x, y}) => state => {
-    if (!state.isDragging) return {}
-
-    const cats = state.cats.map(cat => {
-      if (cat && cat.id == id) {
-        cat.position = [x, y]
-      }
-      return cat
-    })
-    return {cats}
-  },
-  drag: ({id, x, y, cursorX, cursorY}) => state => {
-    const cats = state.cats.map(cat => {
-      if (cat && cat.id == id) {
-        cat.position = [x, y]
-      }
-
-      return cat
-    })
-    return {cats, cursor: [cursorX, cursorY], isDragging: true}
-  }
+  move: ({id, x, y}) => state => (
+    id && state.isDragging
+    ? {cats: state.cats.map(cat => updateCatById(id, cat, [x, y]))}
+    : {}
+  ),
+  drag: ({id, x, y, cursorX, cursorY}) => state => ({
+    cats: state.cats.map(cat => updateCatById(id, cat, [x, y])),
+    cursor: [cursorX, cursorY],
+    isDragging: true
+  })
 }
 
-const Cat = ({id, persona, position}) => (state, actions) => {
+const Cat = ({id, persona, position} = cat) => (state, actions) => {
   const [x, y] = position
   const [cursorX, cursorY] = state.cursor
 
