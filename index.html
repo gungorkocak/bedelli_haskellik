@@ -1,0 +1,92 @@
+<html>
+<head>
+  <style>
+    body {
+      background-image: 
+        linear-gradient(
+          to right,
+          #40e0d02b 2.2px,
+          transparent 2.2px
+        ),
+        linear-gradient(
+          to bottom,
+          #40e0d02b 2.2px,
+          transparent 2.2px
+        );
+      background-size: 0.6em 0.6em;
+    }
+    .box {
+      position: absolute;
+      top: 200;
+      left: 200;
+      width: 200px;
+      height: 200px;
+      background-color: teal;
+      cursor: move;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="box">
+    </div>
+  </div>
+  <script type="text/javascript">
+    var state = {
+      box: [200, 200],
+      cursor: [0, 0],
+      isDragging: false
+    };
+
+    var setState = function(newState) {
+      state = {
+        ...state,
+        ...newState
+      }
+    };
+
+    var render = function() {
+      const [x, y] = state.box;
+      document.querySelector(".box").style.left = x;
+      document.querySelector(".box").style.top = y;
+    };
+
+    var bindEvents = function() {
+      const box = document.querySelector(".box");
+      box.addEventListener("mousedown", function (event) {
+        console.log("yoo", event.clientX);
+
+        setState({
+          cursor: [event.clientX, event.clientY],
+          isDragging: true
+        })
+      });
+
+      box.addEventListener("mouseup", function(event) {
+        console.log("MOUSE UP");
+        setState({
+          isDragging: false
+        });
+      });
+
+      box.addEventListener("mousemove", function (event) {
+        if (state.isDragging) {
+          const box = document.querySelector(".box");
+
+          const {width, height, top, left} = box.getBoundingClientRect();
+
+          console.log("box::", width, height, top, left);
+          const boxRect = [event.clientX - (width/2), event.clientY - (height/2)];
+
+          setState({
+            box: boxRect
+          });
+          render();
+        }
+      });
+    }
+  </script>
+  <script>
+    bindEvents();
+  </script>
+</body>
