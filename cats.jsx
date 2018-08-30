@@ -43,7 +43,7 @@ const state = {
 
 const updateCatById = (id, cat, position) => (
   cat && cat.id === parseInt(id)
-  ? Object.assign({},cat, {position})
+  ? {...cat, position}
   : cat
 )
 

@@ -18,15 +18,13 @@
   },
   "homepage": "https://github.com/gungorkocak/bedelli_haskellik#readme",
   "dependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.7.0",
     "hyperapp": "^1.2.8",
     "jsx-transform": "^2.4.0",
     "picostyle": "^2.0.1"
   },
   "devDependencies": {
-    "@babel/preset-stage-0": "^7.0.0",
-    "babel-core": "^6.26.3"
+    "babel-core": "^6.26.3",
+    "babel-preset-hyperapp": "^2.3.0"
   }
 }
