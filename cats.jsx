@@ -37,7 +37,6 @@ const state = {
     { id: 4, position: [200, 350], persona: "imanli" },
     { id: 5, position: [500, 350], persona: "gurbuz" }
   ],
-  cursor: [0, 0],
   isDragging: false
 }
 
@@ -54,9 +53,8 @@ const actions = {
     ? {cats: state.cats.map(cat => updateCatById(id, cat, [x, y]))}
     : {}
   ),
-  drag: ({id, x, y, cursorX, cursorY}) => state => ({
+  drag: ({id, x, y}) => state => ({
     cats: state.cats.map(cat => updateCatById(id, cat, [x, y])),
-    cursor: [cursorX, cursorY],
     isDragging: true
   })
 }
@@ -78,7 +76,6 @@ const Box = styled("div")(({left, top}) => ({
 
 const Cat = ({id, persona, position} = cat) => (state, actions) => {
   const [x, y] = position
-  const [cursorX, cursorY] = state.cursor
 
   return (
     <Box
@@ -88,9 +85,7 @@ const Cat = ({id, persona, position} = cat) => (state, actions) => {
       onmousedown={e => {
         actions.drag({
           id,
-          x, y,
-          cursorX: e.offsetX,
-          cursorY: e.offsetY
+          x, y
         })
       }}
     >
