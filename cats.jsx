@@ -83,8 +83,8 @@ const Cat = ({id, persona, position} = cat) => (state, actions) => {
   return (
     <Box
       id={id}
-      top={y - cursorY}
-      left={x - cursorX}
+      top={y - (CAT_BOX[1] / 2)}
+      left={x - (CAT_BOX[0] / 2)}
       onmousedown={e => {
         actions.drag({
           id,
