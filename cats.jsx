@@ -76,12 +76,13 @@ const Box = styled("div")(({left, top}) => ({
 
 const Cat = ({id, persona, position} = cat) => (state, actions) => {
   const [x, y] = position
+  const [offsetX, offsetY] = CAT_BOX
 
   return (
     <Box
       id={id}
-      top={y - (CAT_BOX[1] / 2)}
-      left={x - (CAT_BOX[0] / 2)}
+      top={y - (offsetY / 2)}
+      left={x - (offsetX / 2)}
       onmousedown={e => {
         actions.drag({
           id,
@@ -96,9 +97,7 @@ const Cat = ({id, persona, position} = cat) => (state, actions) => {
 
 const view = (state, actions) => (
   <main>
-    {state.cats.map(cat => {
-      return <Cat id={cat.id} persona={cat.persona} position={cat.position} />
-    })}
+    {state.cats.map(Cat)}
   </main>
 )
 
